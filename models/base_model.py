@@ -64,9 +64,9 @@ class BaseModel:
                   The 'created_at' and 'updated_at' attributes converted to ISO
         """
         obj_dict = self.__dict__.copy()
-        obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] = self.created_at.isoformat()
-        obj_dict['updated_at'] = self.updated_at.isoformat()
+        obj_dict["__class__"] = self.__class__.__name__
+        obj_dict["created_at"] = self.created_at.isoformat()
+        obj_dict["updated_at"] = self.updated_at.isoformat()
         return obj_dict
 
     def __str__(self):
@@ -75,4 +75,4 @@ class BaseModel:
         The string format :"[<class name>] (<id>) <dictionary representation>"
         """
         return "[{}] ({}) {}"\
-            .format(self.__class__.__name__, self.id, self.to_dict())
+            .format(self.__class__.__name__, self.id, self.__dict__)
