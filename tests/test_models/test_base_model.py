@@ -3,8 +3,9 @@
 
 Unittest classes:
     TestBaseModel_objects
-    TestBaseModel_save
-    TestBaseModel_to_dict
+    TestSave
+    TestToDict
+    TestStr
 """
 import models
 from models.base_model import BaseModel
