@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 """ File with FileStorage class """
 from models.base_model import BaseModel
-import json
 from models.user import User
-from models.state import State
 from models.city import City
-from models.amenity import Amenity
+from models.state import State
 from models.place import Place
+from models.amenity import Amenity
 from models.review import Review
+import json
 
 
 class FileStorage:
@@ -46,23 +46,11 @@ class FileStorage:
         """ deserializes the JSON file to __objects """
         try:
             with open(FileStorage.__file_path, 'r') as file:
-                data = json.load(file)
-                for key, value in data.items():
+                serialized_objects = json.load(file)
+                for key, value in serialized_objects.items():
                     class_name, obj_id = key.split('.')
-                    if class_name == 'User':
-                        obj = User(**value)
-                    elif class_name == 'State':
-                        obj = State(**value)
-                    elif class_name == 'City':
-                        obj = City(**value)
-                    elif class_name == 'Amenity':
-                        obj = Amenity(**value)
-                    elif class_name == 'Place':
-                        obj = Place(**value)
-                    elif class_name == 'Review':
-                        obj = Review(**value)
-                    else:
-                        continue
+                    class_obj = eval(class_name)
+                    obj = class_obj(**value)
 
             FileStorage.__objects[key] = obj
         except FileNotFoundError:
