@@ -8,7 +8,7 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "(hbnb) "
+    prompt = "(hbnb)" #our cmd
     all_classes = {"BaseModel"}
 
     def do_create(self, arg):
